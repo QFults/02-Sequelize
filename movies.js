@@ -1,29 +1,29 @@
 // const Sequelize = require('sequelize')
 
-// const { Model, DataTypes } = Sequelize
+const { Model, DataTypes } = require('sequelize')
 
 // const sequelize = new Sequelize('mysql://root:rootroot@localhost/movies_db')
 
-// class Movie extends Model { }
+class Movie extends Model { }
 
-// Movie.init({
-//   title: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   director: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   year: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false
-//   },
-//   plot: {
-//     type: DataTypes.TEXT('long'),
-//     allowNull: false
-//   }
-// }, { sequelize, modelName: 'movie' })
+Movie.init({
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  director: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  year: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  plot: {
+    type: DataTypes.TEXT('long'),
+    allowNull: false
+  }
+}, { sequelize, modelName: 'movie' })
 
 // Movie.bulkCreate([
 //   {
@@ -75,4 +75,4 @@
 // Movie.destroy({ where: { id: 5 } })
 
 
-// sequelize.sync()
+sequelize.sync()
