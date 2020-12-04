@@ -6,7 +6,10 @@ axios.get('/api/movies')
         <h5>${movie.title}</h5>
         <h6>Directed by ${movie.director}</h6>
         <h6>Release in ${movie.year}</h6>
-        <p>${movie.plot}</p>
+        <p>
+        <textarea class="newPlot" cols="30" rows="10">${movie.plot}</textarea>
+        <button class="updateMovie" data-id="${movie.id}">Update Plot</button>
+        </p>
         <button class="deleteMovie" data-id="${movie.id}">X</button>
         <hr>
       `
@@ -30,7 +33,10 @@ document.getElementById('addMovie').addEventListener('click', event => {
         <h5>${movie.title}</h5>
         <h6>Directed by ${movie.director}</h6>
         <h6>Release in ${movie.year}</h6>
-        <p>${movie.plot}</p>
+        <p>
+        <textarea class="newPlot" cols="30" rows="10">${movie.plot}</textarea>
+        <button class="updateMovie" data-id="${movie.id}">Update Plot</button>
+        </p>
         <button class="deleteMovie" data-id="${movie.id}">X</button>
         <hr>
       `
@@ -49,6 +55,15 @@ document.addEventListener('click', event => {
     axios.delete(`/api/movies/${event.target.dataset.id}`)
       .then(() => {
         event.target.parentNode.remove()
+      })
+      .catch(err => console.error(err))
+
+  } else if (event.target.className === 'updateMovie') {
+    let plot = event.target.previousSibling.previousSibling.value
+    let id = event.target.dataset.id
+    axios.put(`/api/movies/${id}`, { plot })
+      .then(() => {
+        alert('Plot Updated!')
       })
       .catch(err => console.error(err))
   }
